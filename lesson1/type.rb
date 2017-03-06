@@ -11,13 +11,17 @@ def right_triangle?(a,b,c)
 end
 
 print 'Введи сторону треугольника а: '
-a = gets.to_i
+a = gets.to_f
 print 'Введи сторону треугольника b: '
-b = gets.to_i
+b = gets.to_f
 print 'Введи сторону треугольника c: '
-c = gets.to_i
+c = gets.to_f
 
 puts 'Равнобедренный треугольник' if isosceles_triangle?(a,b,c)
 puts 'Равносторонний треугольник' if equilateral_triangle?(a,b,c)
-puts 'Прямоугольный треугольник' if right_triangle?(a,b,c)
+if right_triangle?(a,b,c)
+  puts 'Прямоугольный треугольник'
+else
+  puts 'Треугольник не прямоугольный'
+end
 

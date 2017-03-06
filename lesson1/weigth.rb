@@ -1,7 +1,7 @@
 print('Введи свое имя: ')
-name = String(gets.chomp)
-print('Введи свой вес: ')
-heigth = Integer(gets.chomp)
+name = gets.chomp
+print('Введи свой рост в см: ')
+heigth = gets.to_f
 
 ideal_weigth = heigth - 110
 

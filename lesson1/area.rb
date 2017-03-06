@@ -1,6 +1,6 @@
 print 'Введи основание треугольника: '
-a = Integer(gets.chomp)
+a = gets.to_f
 print 'Введи высоту треугольника: '
-h = Integer(gets.chomp)
+h = gets.to_f
 
 puts 'Площадь треугольника = ' + (0.5*a*h).to_s
