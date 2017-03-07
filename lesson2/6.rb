@@ -11,7 +11,7 @@ loop do
   puts 'Введи кол-во товара'
   quantity = gets.to_f
 
-  cart[product.to_sym] = { price: price, quantity: quantity }
+  cart[product] = { price: price, quantity: quantity }
 end
 
 total_sum = 0

@@ -4,15 +4,13 @@
 
 def fibonacci1(count)
   fib = [0, 1]
-  fib << fib[fib.length - 1] + fib[fib.length - 2] while fib.length <= count - 1
+  fib << fib[-1] + fib[-2] while fib.length <= count - 1
   fib
 end
 
 def fibonacci2(max_value)
   fib = [0, 1]
-  while fib[fib.length - 1] + fib[fib.length - 2] < max_value
-    fib << fib[fib.length - 1] + fib[fib.length - 2]
-  end
+  fib << fib[-1] + fib[-2] while fib[-1] + fib[-2] < max_value
   fib
 end
 
