@@ -11,15 +11,15 @@ loop do
   puts 'Введи кол-во товара'
   quantity = gets.to_f
 
-  cart[product] = {'price' => price, 'quantity' => quantity}
+  cart[product.to_sym] = { price: price, quantity: quantity }
 end
 
 total_sum = 0
 
 cart.each do |product, value|
-  sum = value['price'] * value['quantity']
+  sum = value[:price] * value[:quantity]
   total_sum += sum
-  puts "Продукт: #{product} Цена: #{value['price']} Количество: #{value['quantity']} Сумма: #{sum}"
+  puts "Продукт: #{product} Цена: #{value[:price]} Количество: #{value[:quantity]} Сумма: #{sum}"
 end
 
 puts "Итоговая цена: #{total_sum}"

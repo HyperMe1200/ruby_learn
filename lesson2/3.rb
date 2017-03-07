@@ -3,28 +3,17 @@
 # поэтому оба варианта
 
 def fibonacci1(count)
-  fib = []
-  fib[0] = 0
-  fib[1] = 1
-  (count + 1).times {|n| fib[n] = fib[n-1] + fib[n-2] if fib[n].nil?}
-
-  return fib
-
+  fib = [0, 1]
+  fib << fib[fib.length - 1] + fib[fib.length - 2] while fib.length <= count - 1
+  fib
 end
 
 def fibonacci2(max_value)
-  fib = []
-  fib[0] = 0
-  fib[1] = 1
-  n = 0
-  loop do
-    n += 1
-    fib[n] = fib[n-1] + fib[n-2] if fib[n].nil?
-    break if fib[n] > max_value - fib[n - 1]
+  fib = [0, 1]
+  while fib[fib.length - 1] + fib[fib.length - 2] < max_value
+    fib << fib[fib.length - 1] + fib[fib.length - 2]
   end
-
-  return fib
-
+  fib
 end
 
 fib1 = fibonacci1(100)
