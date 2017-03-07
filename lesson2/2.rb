@@ -1,0 +1,1 @@
+numbers = ((10..100).map { |n| n if n % 5 == 0 }).compact
