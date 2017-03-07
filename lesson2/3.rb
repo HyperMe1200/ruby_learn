@@ -4,7 +4,7 @@
 
 def fibonacci1(count)
   fib = [0, 1]
-  fib << fib[-1] + fib[-2] while fib.length <= count - 1
+  fib << fib[-1] + fib[-2] while fib.length < count
   fib
 end
 
@@ -16,3 +16,4 @@ end
 
 fib1 = fibonacci1(100)
 fib2 = fibonacci2(100)
+puts fib1.count
