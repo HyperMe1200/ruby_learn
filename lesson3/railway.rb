@@ -3,9 +3,7 @@ class Route
   attr_reader :stations
 
   def initialize(first_station, last_station)
-    @first_station = first_station
-    @last_station = last_station
-    @stations = [@first_station, @last_station]
+    @stations = [first_station, last_station]
   end
 
   def add_station(station)
@@ -17,7 +15,7 @@ class Route
   end
 
   def show_route
-    @stations.each_with_index { |station, index| puts "№#{index + 1} #{station}" }
+    @stations.each_with_index(1) { |station, index| puts "№#{index} #{station}" }
   end
 end
 
@@ -34,29 +32,8 @@ class Station
     @trains << train
   end
 
-  def show_trains(train_type = 'all')
-    freight_trains = []
-    passenger_trains = []
-
-    @trains.each do |train|
-      if train.type == 'freight'
-        freight_trains << train
-      else
-        passenger_trains << train
-      end
-    end
-
-    case train_type
-      when 'all'
-        puts @trains
-        puts "На станции #{@trains.length} поездов"
-      when 'freight'
-        puts "#{freight_trains}"
-        puts "На станции #{freight_trains.length} грузовых поездов"
-      when 'passenger'
-        puts "#{passenger_trains}"
-        puts "На станции #{passenger_trains.length} грузовых поездов"
-    end
+  def show_trains(train_type)
+    @trains.select { |train| train.type == train_type }
   end
 
   def send_train(train)
@@ -74,12 +51,15 @@ class Train
     @type = type
     @carriage_amount = carriage_amount
     @speed = 0
-    @route = nil
     @current_station_id = 0
   end
 
   def stop
     @speed = 0
+  end
+
+  private def stopped?
+    @speed == 0
   end
 
   def speedup(speed)
@@ -95,11 +75,11 @@ class Train
   end
 
   def carriage_add
-    @carriage_amount += 1 if @speed == 0
+    @carriage_amount += 1 if stopped?
   end
 
   def carriage_remove
-    @carriage_amount -= 1 if @speed == 0 && @carriage_amount > 0
+    @carriage_amount -= 1 if stopped? && @carriage_amount > 0
   end
 
   def get_route(route)
