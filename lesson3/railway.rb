@@ -15,7 +15,7 @@ class Route
   end
 
   def show_route
-    @stations.each_with_index { |station, index| puts "№#{index + 1} #{station}" }
+    @stations.each.with_index(1) { |station, index| puts "№#{index} #{station}" }
   end
 end
 
