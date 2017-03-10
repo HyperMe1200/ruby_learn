@@ -15,7 +15,7 @@ class Route
   end
 
   def show_route
-    @stations.each_with_index(1) { |station, index| puts "№#{index} #{station}" }
+    @stations.each_with_index { |station, index| puts "№#{index + 1} #{station}" }
   end
 end
 
@@ -45,6 +45,7 @@ end
 class Train
 
   attr_reader :carriage_amount, :speed
+  attr_accessor :route
 
   def initialize(number, type, carriage_amount)
     @number = number
@@ -80,10 +81,6 @@ class Train
 
   def carriage_remove
     @carriage_amount -= 1 if stopped? && @carriage_amount > 0
-  end
-
-  def get_route(route)
-    @route = route
   end
 
   def show_current_station
