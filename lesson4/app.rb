@@ -20,7 +20,7 @@ def commands
 end
 
 def show_menu
-  puts commands
+  puts commands.gsub(/^#{commands.scan(/^[ \t]+(?=\S)/).min}/, '')
   printf 'Введи пункт меню: '
   user_input = gets.chomp
   loop do
@@ -69,7 +69,6 @@ def create_train
     else
       puts 'Неправильный ввод'
   end
-  p Train::all_trains
 end
 
 def create_route
@@ -86,7 +85,7 @@ def add_train_route
 end
 
 def select_train
-  Train::all_trains.each_with_index { |train, index| puts "#{index} #{train}" }
+  Train::all_trains.each_with_index { |train, index| puts "#{index} #{train.number}" }
   printf 'Выбери поезд: '
   index = gets.to_i
   Train::all_trains[index]
@@ -110,6 +109,7 @@ def add_train_wagon
   train = select_train
   wagon = train.is_a?(CargoTrain) ? CargoWagon.new : PassengerWagon.new
   train.wagon_add(wagon)
+  puts "Кол-во вагонов в поезде: #{train.wagons.size}"
 end
 
 def remove_train_wagon
@@ -133,6 +133,7 @@ def move_train
   else
     puts 'Установите маршрут поезду'
   end
+  puts
 end
 
 def show_station_info
