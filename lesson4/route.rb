@@ -13,7 +13,7 @@ class Route
   end
 
   def remove_station(station)
-    @stations.delete(station)
+      @stations.delete(station)
   end
 
   def show_route

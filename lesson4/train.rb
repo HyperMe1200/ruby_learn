@@ -45,6 +45,10 @@ class Train
     puts "Текущая станция #{@route.stations[@current_station_id].name}"
   end
 
+  def current_station
+    @route.stations[@current_station_id]
+  end
+
   def show_next_station
     puts "Следующая станция #{@route.stations[@current_station_id + 1].name}"
   end
