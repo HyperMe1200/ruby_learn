@@ -17,11 +17,6 @@ class Train
     @speed = 0
   end
 
-  #используется только внутри методов инстанса, по условиям задачи пользователям не требуется
-  private def stopped?
-    @speed == 0
-  end
-
   def self.all_trains
     @@all_trains
   end
@@ -86,5 +81,11 @@ class Train
     else
       puts 'Поезд на конечной'
     end
+  end
+
+  #используется только внутри методов инстанса, по условиям задачи пользователям не требуется
+  private
+  def stopped?
+    @speed == 0
   end
 end
