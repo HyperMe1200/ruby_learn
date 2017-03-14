@@ -1,6 +1,6 @@
 class Train
 
-  attr_reader :speed, :number
+  attr_reader :speed, :number, :current_station_id
   attr_accessor :route
 
   @@all_trains = []
@@ -62,7 +62,7 @@ class Train
   end
 
   def goto_next_station
-    if @current_station_id < @route.stations.size
+    if @current_station_id < @route.stations.size - 1
       next_station = @route.stations[@current_station_id + 1]
       next_station.take_train(self)
       @route.stations[@current_station_id].send_train(self)
