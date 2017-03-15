@@ -1,6 +1,6 @@
 class Train
 
-  attr_reader :speed, :number, :current_station_id
+  attr_reader :speed, :number #, :current_station_id
   attr_accessor :route
 
   @@all_trains = []

@@ -9,25 +9,6 @@ require_relative('cargo_wagon')
 
 class Application
 
-  def show
-    show_menu
-  end
-
-  private
-  def commands
-    %q{
-       1. Создавать станции
-       2. Создавать поезда
-       3. Создавать маршруты и управлять станциями в нем (добавлять, удалять)
-       4. Назначать маршрут поезду
-       5. Добавлять вагоны к поезду
-       6. Отцеплять вагоны от поезда
-       7. Перемещать поезд по маршруту вперед и назад
-       8. Просматривать список станций и список поездов на станции
-       0. Выход
-    }
-  end
-
   def show_menu
     puts commands #.gsub(/^#{commands.scan(/^[ \t]+(?=\S)/).min}/, '')
     printf 'Введи пункт меню: '
@@ -57,6 +38,21 @@ class Application
       end
     show_menu
     end
+  end
+
+  private
+  def commands
+    %q{
+       1. Создавать станции
+       2. Создавать поезда
+       3. Создавать маршруты и управлять станциями в нем (добавлять, удалять)
+       4. Назначать маршрут поезду
+       5. Добавлять вагоны к поезду
+       6. Отцеплять вагоны от поезда
+       7. Перемещать поезд по маршруту вперед и назад
+       8. Просматривать список станций и список поездов на станции
+       0. Выход
+    }
   end
 
   def create_station
@@ -238,12 +234,16 @@ class Application
 
   def show_station_info
     station = select_station
-    station.trains.each {|train| puts "Поезд №#{train.number}"}
+    unless station.trains.empty?
+      station.trains.each {|train| puts "Поезд №#{train.number}"}
+    else
+      puts 'На станции в данный момент нет поездов'
+    end
   end
 end
 
 app = Application.new
-app.show
+app.show_menu
 
 
 
