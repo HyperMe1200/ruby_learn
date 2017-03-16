@@ -1,6 +1,8 @@
 class Train
 
   include Manufacturer
+  include InstanceCounter
+
   attr_reader :speed, :number, :wagons
   attr_accessor :route
 
@@ -12,14 +14,19 @@ class Train
     @speed = 0
     @current_station_id = 0
     @@all_trains << self
+    register_instance
   end
 
-  def stop
-    @speed = 0
+  def self.find(number)
+    @@all_trains.detect{ |train| train.number == number }
   end
 
   def self.all_trains
     @@all_trains
+  end
+
+  def stop
+    @speed = 0
   end
 
   def speedup(speed)
@@ -86,10 +93,6 @@ class Train
     else
       puts 'Поезд на конечной'
     end
-  end
-
-  def self.find(number)
-    @@all_trains.detect{ |train| train.number == number }
   end
 
   #используется только внутри методов инстанса, по условиям задачи пользователям не требуется
