@@ -5,6 +5,6 @@ class Wagon
   include InstanceCounter
 
   def initialize
-    register_instances
+    register_instance
   end
 end
