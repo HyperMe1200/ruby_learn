@@ -40,6 +40,9 @@ class Application
       end
     show_menu
     end
+  rescue Exception => e
+    puts e.message
+    retry
   end
 
   private
@@ -62,16 +65,13 @@ class Application
     name = gets.chomp
     Station.new(name)
     puts "Станция #{name} создана"
-  rescue Exception => e
-    puts e.message
-    retry
   end
 
   def create_train
-    printf 'Введи номер поезда: '
-    number = gets.chomp
     printf 'Выбери тип поезда: 1. Пассажирский, 2. Грузовой : '
     type = gets.chomp
+    printf 'Введи номер поезда: '
+    number = gets.chomp
     case type
       when '1'
         PassengerTrain.new(number)
@@ -82,9 +82,6 @@ class Application
       else
         puts 'Неправильный ввод'
     end
-  rescue Exception => e
-    puts e.message
-    retry
   end
 
   def add_route_station(route)
@@ -100,7 +97,7 @@ class Application
     station_index = gets.to_i - 1
     station = route.stations[station_index]
     if route.stations.index(station) == 0 || route.stations.index(station) == route.stations.length - 1
-      puts "Нельзя удалять начальную и конечную станции маршрута"
+      puts 'Нельзя удалять начальную и конечную станции маршрута'
     else
       route.remove_station(station)
       puts 'Станция удалена из маршрута'
@@ -153,9 +150,6 @@ class Application
     last_station = Station.new(gets.chomp)
     Route.new(first_station, last_station)
     puts 'Маршрут создан'
-  rescue Exception => e
-    puts e.message
-    retry
   end
 
   def add_train_route
