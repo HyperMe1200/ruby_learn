@@ -160,11 +160,11 @@ class Application
 
   def select_train
     unless Train.all_trains.empty?
-      trains = Train.all_trains.to_a
-      trains.each_with_index { |hash, index| puts "#{index}. поезд №#{hash[0]}" }
+      trains = Train.all_trains.values
+      trains.each_with_index{ |train, index| puts "#{index}. Поезд №#{train.number}" }
       printf 'Выбери поезд: '
       index = gets.to_i
-      trains[index][1]
+      trains[index]
     else
       puts 'Необходимо создать поезд'
       show_menu
