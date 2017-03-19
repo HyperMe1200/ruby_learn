@@ -42,6 +42,7 @@ class Application
     end
   rescue Exception => e
     puts e.message
+    puts e.backtrace
     retry
   end
 
@@ -63,8 +64,8 @@ class Application
   def create_station
     printf 'Введите имя станции: '
     name = gets.chomp
-    Station.new(name)
     puts "Станция #{name} создана"
+    Station.new(name)
   end
 
   def create_train
@@ -87,7 +88,7 @@ class Application
   def add_route_station(route)
     station = create_station
     route.add_station(station)
-    puts "Станция #{name} добавлена к маршруту"
+    puts "Станция #{station.name} добавлена к маршруту"
     route.show_route
   end
 
@@ -246,10 +247,3 @@ end
 
 app = Application.new
 app.show_menu
-
-
-
-
-
-
-

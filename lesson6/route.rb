@@ -13,7 +13,7 @@ class Route
   end
 
   def add_station(station)
-    validate!(station)
+    validate!(Array(station))
     @stations.insert(-2, station)
   end
 
@@ -37,11 +37,7 @@ class Route
   end
 
   private
-  def validate!(station = nil)
-    if station
-      raise 'Неверный тип данных станции' unless @stations[0].is_a?(Station) or @stations[-1].is_a?(Station)
-    else
-      raise 'Неверный тип данных станции' unless station.is_a?(Station)
-    end
+  def validate!(stations = @stations)
+    stations.each { |station| raise 'Неверный тип данных станции' unless station.is_a?(Station) }
   end
 end
