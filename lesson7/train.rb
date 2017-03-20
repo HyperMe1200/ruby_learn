@@ -45,6 +45,7 @@ class Train
   end
 
   def wagon_add(wagon)
+    wagon.number = wagons.size + 1
     @wagons << wagon if stopped? && wagon_valid?(wagon)
   end
 
@@ -90,6 +91,10 @@ class Train
     validate_number!
   rescue
     false
+  end
+
+  def each_wagon
+    @wagons.each.with_index(1) { |wagon, index| yield(wagon, index) }
   end
 
   #используется только внутри методов инстанса, по условиям задачи пользователям не требуется
