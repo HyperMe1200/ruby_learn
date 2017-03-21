@@ -40,7 +40,6 @@ class Application
     end
   rescue Exception => e
     puts e.message
-    puts e.backtrace
     retry
   end
 
@@ -118,7 +117,6 @@ class Application
         show_menu
       else
         puts 'Введен неправильный пункт меню'
-        show_menu
     end
   end
 
@@ -143,7 +141,6 @@ class Application
         show_menu
       else
         puts 'Введен неправильный пункт меню'
-        show_menu
     end
   end
 
@@ -162,7 +159,6 @@ class Application
         show_menu
       else
         puts 'Введен неправильный пункт меню'
-        show_menu
     end
   end
 
@@ -190,7 +186,6 @@ class Application
       trains[index]
     else
       puts 'Необходимо создать поезд'
-      show_menu
     end
   end
 
@@ -206,7 +201,6 @@ class Application
       end
     else
       puts 'У поезда нет вагонов'
-      show_menu
     end
   end
 
@@ -221,7 +215,6 @@ class Application
       train.wagons.detect { |wagon| wagon.number == number}
     else
       puts 'У поезда нет вагонов'
-      show_menu
     end
   end
 
@@ -247,7 +240,6 @@ class Application
       Route.all_routes[index]
     else
       puts 'Необходимо создать маршрут'
-      show_menu
     end
   end
 
@@ -259,7 +251,6 @@ class Application
       Station.all_stations[index]
     else
       puts 'Необходимо создать станцию'
-      show_menu
     end
   end
 
