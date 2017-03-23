@@ -1,12 +1,15 @@
 # Station class
 class Station
   include InstanceCounter
-
-  attr_reader :name, :trains
-
-  @@all_stations = []
+  include Validation
 
   VALID_NAME = /\A[a-zа-я\d\s]{2,25}\z/i
+
+  attr_reader :name, :trains
+  validate :name, :format, VALID_NAME
+  @@all_stations = []
+
+
 
   def initialize(name)
     @name = name
@@ -33,7 +36,7 @@ class Station
   end
 
   def valid?
-    validate!
+    validate_name!
   rescue
     false
   end
@@ -44,7 +47,7 @@ class Station
 
   private
 
-  def validate!
+  def validate_name!
     raise 'Некорректное имя' unless @name =~ VALID_NAME
   end
 end

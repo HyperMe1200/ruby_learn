@@ -1,6 +1,7 @@
 require_relative('instance_counter')
 require_relative('manufacturer')
 require_relative('helper')
+require_relative('validation')
 require_relative('train')
 require_relative('station')
 require_relative('route')
@@ -319,4 +320,4 @@ class Application
 end
 
 app = Application.new
-app.show_menu
+#app.show_menu

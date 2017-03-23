@@ -2,17 +2,19 @@
 class Train
   include Manufacturer
   include InstanceCounter
-
-  attr_reader :speed, :number, :wagons
-  attr_accessor :route
-
-  @@all_trains = {}
+  include Validation
 
   VALID_NUMBER = /\A[a-zа-я\d]{3}-?[a-zа-я\d]{2}\z/i
 
+  attr_reader :speed, :number, :wagons
+  attr_accessor :route
+  validate :number, :format, VALID_NUMBER
+
+  @@all_trains = {}
+
   def initialize(number)
     @number = number
-    validate_number!
+    validate!
     @wagons = []
     @speed = 0
     @current_station_id = 0
