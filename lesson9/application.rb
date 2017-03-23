@@ -320,4 +320,4 @@ class Application
 end
 
 app = Application.new
-#app.show_menu
+app.show_menu
